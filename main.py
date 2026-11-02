@@ -18,9 +18,20 @@ absolute_folder_path = os.path.dirname(absolute_file_path)
 #ajouter le absolute_folder_path au path de python pour qu'il puisse trouver le path
 sys.path.append(absolute_folder_path)
 
+import importlib
+import ui
+importlib.reload(ui).RandomAnimationUI
 
+def main(): #definition fonction main
+    global widget #global permet que la variable widget est accessible partout, permet de garder la variable pour plus tard
+    
+    try: #permet de pas les accumuler plus d'une fois
+        widget.close()
+    except Exception:
+        pass
 
-from ui import MyClass
-
-my_class = MyClass()
-my_class.print_variable()
+    
+    widget = ui.RandomAnimationUI() 
+    widget.show()
+ 
+main() #call la fonction main
