@@ -131,7 +131,7 @@ class RandomAnimationUI(QWidget):
         # Création du bouton et sa connexion à  on_click 
         self.button = QPushButton("generate", self) #ajouter un string pour ajouter du texte sur notre bouton
         layout.addWidget(self.button)
-        #  self.button.clicked.connect(self.random_value) 
+        
 
 
 
@@ -161,30 +161,39 @@ class RandomAnimationUI(QWidget):
         return layout, spin_box  #attention ca retounre un layout et ensuite un spinbox, donc il faut faire attention à comment on va l'utiliser.
 
 
-    def random_value(self): 
+    
 
-        
-       #on récupère les valeur et on les met directement dans un random pour obtenir notre valeur aléatoire
+    def get_value(self): 
 
         self.value_duration = self.timing_duration.value()
         self.value_step = self.timing_step.value()
+#------------
+        self.t_x_min = self.translate_spin_min_x.value()
+        self.t_y_min = self.translate_spin_min_y.value()    
+        self.t_z_min = self.translate_spin_min_z.value()
 
-        self.random_translate_x = random.uniform(self.translate_spin_min_x.value(), self.translate_spin_max_x.value())
-        self.random_translate_y = random.uniform(self.translate_spin_min_y.value(), self.translate_spin_max_y.value())
-        self.random_translate_z = random.uniform(self.translate_spin_min_z.value(), self.translate_spin_max_z.value())
+        self.t_x_max = self.translate_spin_max_x.value()
+        self.t_y_max = self.translate_spin_max_y.value()        
+        self.t_z_max = self.translate_spin_max_z.value()
+#------------
+        self.r_x_min = self.rotate_spin_min_x.value()
+        self.r_y_min = self.rotate_spin_min_y.value()       
+        self.r_z_min = self.rotate_spin_min_z.value()
 
-        self.random_rotate_x = random.uniform(self.rotate_spin_min_x.value(), self.rotate_spin_max_x.value())
-        self.random_rotate_y = random.uniform(self.rotate_spin_min_y.value(), self.rotate_spin_max_y.value())
-        self.random_rotate_z = random.uniform(self.rotate_spin_min_z.value(), self.rotate_spin_max_z.value())
+        self.r_x_max = self.rotate_spin_max_x.value()
+        self.r_y_max = self.rotate_spin_max_y.value()               
+        self.r_z_max = self.rotate_spin_max_z.value()
+#------------
+        self.s_x_min = self.scale_spin_min_x.value()
+        self.s_y_min = self.scale_spin_min_y.value()
+        self.s_z_min = self.scale_spin_min_z.value()
 
-        self.random_scale_x = random.uniform(self.scale_spin_min_x.value(), self.scale_spin_max_x.value())
-        self.random_scale_y = random.uniform(self.scale_spin_min_y.value(), self.scale_spin_max_y.value())
-        self.random_scale_z = random.uniform(self.scale_spin_min_z.value(), self.scale_spin_max_z.value())
+        self.s_x_max = self.scale_spin_max_x.value()
+        self.s_y_max = self.scale_spin_max_y.value()
+        self.s_z_max = self.scale_spin_max_z.value()
+#------------
 
-        return self.value_duration, self.value_step, self.random_translate_x, self.random_translate_y, self.random_translate_z, self.random_rotate_x, self.random_rotate_y, self.random_rotate_z, self.random_scale_x, self.random_scale_y, self.random_scale_z
-
-
-
-    #def on_click(self): 
+        return self.value_duration, self.value_step, self.t_x_min, self.t_y_min, self.t_z_min, self.t_x_max, self.t_y_max, self.t_z_max, self.r_x_min, self.r_y_min, self.r_z_min, self.r_x_max, self.r_y_max, self.r_z_max, self.s_x_min, self.s_y_min, self.s_z_min, self.s_x_max, self.s_y_max, self.s_z_max
+    
 
         

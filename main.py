@@ -29,19 +29,20 @@ import animator
 importlib.reload(animator)
 
 def main(): #definition fonction main
-    global widget #global permet que la variable widget est accessible partout, permet de garder la variable pour plus tard
+ 
     global animator_play #global permet que la variable animator_play est accessible partout, permet de garder la variable pour plus tard
     
     try: #permet de pas les accumuler plus d'une fois
-        widget.close()
+        
         animator_play.ui.close()
         animator_play.ui.deleteLater()
     except Exception:
         pass
 
     
-    widget = ui.RandomAnimationUI() 
-    widget.show()
+    animator_play = ui.RandomAnimationUI() 
+    # mon self.ui.show() est maintenant dans le init de la classe RandomAnimation, donc je n'ai pas besoin de le mettre ici sinon il pop en double
+   
  
 main() #call la fonction main
 animator_play = animator.RandomAnimation() #on crée un objet de la classe RandomAnimation
