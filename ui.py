@@ -71,29 +71,29 @@ class RandomAnimationUI(QWidget):
         timing_duration, self.timing_duration = self.create_spin_box("Durations (Frames) :", 1, 1000, 100)
         timing_step, self.timing_step = self.create_spin_box("Step (Frames) :", 1, 100, 30)
 
-        translate_min_x, self.translate_spin_min_x = self.create_spin_box("min x :", -100, 100, 10)   
-        translate_min_y, self.translate_spin_min_y = self.create_spin_box("min y :", -100, 100, 10) 
-        translate_min_z, self.translate_spin_min_z = self.create_spin_box("min z :", -100, 100, 10)
+        translate_min_x, self.translate_spin_min_x = self.create_spin_box("min x :", -100, 100, -5)   
+        translate_min_y, self.translate_spin_min_y = self.create_spin_box("min y :", -100, 100, -5) 
+        translate_min_z, self.translate_spin_min_z = self.create_spin_box("min z :", -100, 100, -5)
 
-        translate_max_x, self.translate_spin_max_x = self.create_spin_box("max x :",-100,    100, 10) 
-        translate_max_y, self.translate_spin_max_y = self.create_spin_box("max y :", -100, 100, 10)
-        translate_max_z, self.translate_spin_max_z = self.create_spin_box("max z :", -100, 100, 10)
+        translate_max_x, self.translate_spin_max_x = self.create_spin_box("max x :",-100,    100, 5) 
+        translate_max_y, self.translate_spin_max_y = self.create_spin_box("max y :", -100, 100, 5)
+        translate_max_z, self.translate_spin_max_z = self.create_spin_box("max z :", -100, 100, 5)
 
-        rotate_min_x, self.rotate_spin_min_x = self.create_spin_box("min x :", -360, 360, 10)
-        rotate_min_y, self.rotate_spin_min_y = self.create_spin_box("min y :", -360, 360, 10)
-        rotate_min_z, self.rotate_spin_min_z = self.create_spin_box("min z :", -360,  360, 10)        
+        rotate_min_x, self.rotate_spin_min_x = self.create_spin_box("min x :", -360, 360, -180)
+        rotate_min_y, self.rotate_spin_min_y = self.create_spin_box("min y :", -360, 360, -180)
+        rotate_min_z, self.rotate_spin_min_z = self.create_spin_box("min z :", -360,  360, -180)        
 
-        rotate_max_x, self.rotate_spin_max_x = self.create_spin_box("max x :", -360, 100, 10)
-        rotate_max_y, self.rotate_spin_max_y = self.create_spin_box("max y :", -360, 100, 10)
-        rotate_max_z, self.rotate_spin_max_z = self.create_spin_box("max z :", -360, 100, 10)
+        rotate_max_x, self.rotate_spin_max_x = self.create_spin_box("max x :", -360, 360, 180)
+        rotate_max_y, self.rotate_spin_max_y = self.create_spin_box("max y :", -360, 360, 180)
+        rotate_max_z, self.rotate_spin_max_z = self.create_spin_box("max z :", -360, 360, 180)
 
-        scale_min_x, self.scale_spin_min_x = self.create_spin_box("min x :", 1, 100, 10)
-        scale_min_y, self.scale_spin_min_y = self.create_spin_box("min y :", 1, 100, 10)
-        scale_min_z, self.scale_spin_min_z = self.create_spin_box("min z :", 1, 100, 10)
+        scale_min_x, self.scale_spin_min_x = self.create_spin_box("min x :", 1, 100, 1)
+        scale_min_y, self.scale_spin_min_y = self.create_spin_box("min y :", 1, 100, 1)
+        scale_min_z, self.scale_spin_min_z = self.create_spin_box("min z :", 1, 100, 1)
 
-        scale_max_x, self.scale_spin_max_x = self.create_spin_box("max x :", 1, 100, 10)
-        scale_max_y, self.scale_spin_max_y = self.create_spin_box("max y :", 1, 100, 10)
-        scale_max_z, self.scale_spin_max_z = self.create_spin_box("max z :", 1, 100, 10)   
+        scale_max_x, self.scale_spin_max_x = self.create_spin_box("max x :", 1, 100, 2)
+        scale_max_y, self.scale_spin_max_y = self.create_spin_box("max y :", 1, 100, 2)
+        scale_max_z, self.scale_spin_max_z = self.create_spin_box("max z :", 1, 100, 2)   
 
         #################################################
         # On place les layout (contenant les spinbox) dans les layout des groupbox
