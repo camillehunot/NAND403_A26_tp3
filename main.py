@@ -18,6 +18,8 @@ absolute_folder_path = os.path.dirname(absolute_file_path)
 #ajouter le absolute_folder_path au path de python pour qu'il puisse trouver le path
 sys.path.append(absolute_folder_path)
 
+#################################################################################
+
 import importlib
 import ui
 importlib.reload(ui).RandomAnimationUI
@@ -35,3 +37,4 @@ def main(): #definition fonction main
     widget.show()
  
 main() #call la fonction main
+
