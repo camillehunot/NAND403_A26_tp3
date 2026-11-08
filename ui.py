@@ -129,9 +129,9 @@ class RandomAnimationUI(QWidget):
 
 
         # Création du bouton et sa connexion à  on_click 
-        button = QPushButton("generate", self) #ajouter un string pour ajouter du texte sur notre bouton
-        layout.addWidget(button)
-        button.clicked.connect(self.random_value) 
+        self.button = QPushButton("generate", self) #ajouter un string pour ajouter du texte sur notre bouton
+        layout.addWidget(self.button)
+        #  self.button.clicked.connect(self.random_value) 
 
 
 
