@@ -8,9 +8,6 @@ from PySide6.QtWidgets import ( QMessageBox, )
 class RandomAnimation:
     def __init__(self):
          super().__init__() 
-       # self.ui = ui.RandomAnimationUI()
-        #self.ui.button.clicked.connect(self.on_click)
-        #en gros : quand on clic sur le bouton (du ui), on appelle la fonction random_value
       
 
 
@@ -27,9 +24,6 @@ class RandomAnimation:
             return item_selected
 
 
-
-
-    
     def apply_random_animation(self,
                                obj, duration, 
                                step, tx_min, ty_min, tz_min, tx_max, ty_max, tz_max, 
