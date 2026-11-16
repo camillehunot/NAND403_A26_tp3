@@ -4,20 +4,23 @@ import sys
 from maya import cmds
 from PySide6.QtWidgets import (QHBoxLayout, QWidget, QSpinBox,QGroupBox, QLabel, QVBoxLayout, QHBoxLayout, QTextEdit, QPushButton, QMessageBox, QApplication, QCheckBox, QLineEdit)
 
-import importlib
-import animator
-importlib.reload(animator)
-
 
 class RandomAnimationUI(QWidget):
-    def __init__(self): #constructeur self équivalent de this du cpp, le constructeur dans python prend self en paramètre
+    def __init__(self, variable_animation): #constructeur self équivalent de this du cpp, le constructeur dans python prend self en paramètre
         super().__init__() # Constructeur de notre parent (super = mot clé générique pour l'héritage)
+        self.animator = variable_animation
         self.setWindowTitle("Random Animation Tool")  
         self.create_ui()#pas besoin de mettre self ici. permet d'appeler notre fonction create UI
 
-    def create_ui(self):
+    def no_selection(self):
+         message = QMessageBox.warning(self, "Warning", "Nothing selected in the outliner")
+         return message
+    
 
-        app = QApplication.instance() #permet de récupérer l'instance de l'application, toujours avant un QWidget 
+    
+
+    def create_ui(self):
+ 
         layout = QVBoxLayout(self)   #container
         
 
@@ -130,7 +133,12 @@ class RandomAnimationUI(QWidget):
 
         # Création du bouton et sa connexion à  on_click 
         self.button = QPushButton("generate", self) #ajouter un string pour ajouter du texte sur notre bouton
+
+        self.button.clicked.connect(self.get_value)
+
         layout.addWidget(self.button)
+
+        
         
 
 
@@ -191,9 +199,20 @@ class RandomAnimationUI(QWidget):
         self.s_x_max = self.scale_spin_max_x.value()
         self.s_y_max = self.scale_spin_max_y.value()
         self.s_z_max = self.scale_spin_max_z.value()
+
+        self.no_selection
+
 #------------
 
-        return self.value_duration, self.value_step, self.t_x_min, self.t_y_min, self.t_z_min, self.t_x_max, self.t_y_max, self.t_z_max, self.r_x_min, self.r_y_min, self.r_z_min, self.r_x_max, self.r_y_max, self.r_z_max, self.s_x_min, self.s_y_min, self.s_z_min, self.s_x_max, self.s_y_max, self.s_z_max
-    
+        self.animator.on_click(self.value_duration, self.value_step, 
+                          self.t_x_min, self.t_y_min, self.t_z_min, 
+                          self.t_x_max, self.t_y_max, self.t_z_max, 
+                          self.r_x_min, self.r_y_min, self.r_z_min, 
+                          self.r_x_max, self.r_y_max, self.r_z_max, 
+                          self.s_x_min, self.s_y_min, self.s_z_min, 
+                          self.s_x_max, self.s_y_max, self.s_z_max,
+                          self.no_selection)
 
-        
+     
+    
+            

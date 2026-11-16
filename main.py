@@ -2,14 +2,9 @@
 import os
 import sys
 
-#voir les paths accessibles
-print(sys.path)
-
 
 # on a obtennue le fichier courrant : __file__
 absolute_file_path = os.path.abspath(__file__) #donner le path du fichier en cours
-print(absolute_file_path)
-
 
 #On trouve le path du folder
 absolute_folder_path = os.path.dirname(absolute_file_path)
@@ -35,14 +30,16 @@ def main(): #definition fonction main
     try: #permet de pas les accumuler plus d'une fois
         
         animator_play.ui.close()
-        animator_play.ui.deleteLater()
+      
     except Exception:
         pass
 
+    variable_animation = animator.RandomAnimation()
     
-    animator_play = ui.RandomAnimationUI() 
-    # mon self.ui.show() est maintenant dans le init de la classe RandomAnimation, donc je n'ai pas besoin de le mettre ici sinon il pop en double
+    animator_play = ui.RandomAnimationUI(variable_animation) 
    
+
+    animator_play.show()
+
  
 main() #call la fonction main
-animator_play = animator.RandomAnimation() #on crée un objet de la classe RandomAnimation

@@ -5,29 +5,23 @@ import sys
 from maya import cmds
 from PySide6.QtWidgets import ( QMessageBox, )
 
-import importlib
-import ui
-importlib.reload(ui)
-
 class RandomAnimation:
     def __init__(self):
-        self.ui = ui.RandomAnimationUI()
-        self.ui.button.clicked.connect(self.on_click)
+         super().__init__() 
+       # self.ui = ui.RandomAnimationUI()
+        #self.ui.button.clicked.connect(self.on_click)
         #en gros : quand on clic sur le bouton (du ui), on appelle la fonction random_value
-        self.ui.show()
+      
 
 
-
-
-
-
-    def check_selection(self):
+    def check_selection(self, no_selection):
     
             item_selected= cmds.ls(selection=True) #permet de récupérer les objets selectionnés dans maya et de les mettre dans la variable item_selected
         
             if not item_selected: #si aucun item n'est selectionné, on affiche un message d'erreur
-                QMessageBox.warning(self.ui, "Warning", "Nothing selected in the outliner")
-                print("Nothing selected in the outliner")
+                no_selection()
+            #     QMessageBox.warning(self.ui, "Warning", "Nothing selected in the outliner")
+            #     print("Nothing selected in the outliner")
                 return None
             
             return item_selected
@@ -47,7 +41,6 @@ class RandomAnimation:
         cmds.cutKey(obj, time=(0, duration), attribute=["translateX", "translateY", "translateZ", "rotateX", "rotateY", "rotateZ", "scaleX", "scaleY", "scaleZ"])
         
         
-        object = obj
         cmds.playbackOptions(min=1, max=duration) #on indique la longueur de l'animation en frame
         start_frame = 0
         end_frame = start_frame + duration
@@ -79,7 +72,10 @@ class RandomAnimation:
 
     
          #-------- on set la key 
-            self.set_maya_keys(obj, current_frame, random_t_x, random_t_y, random_t_z, random_r_x, random_r_y, random_r_z, random_s_x, random_s_y, random_s_z)
+            self.set_maya_keys(obj, current_frame, 
+                               random_t_x, random_t_y, random_t_z, 
+                               random_r_x, random_r_y, random_r_z, 
+                               random_s_x, random_s_y, random_s_z)
 
 
 
@@ -92,7 +88,10 @@ class RandomAnimation:
 
 
          #-------- on copie les valeur du début de l'animation a la fin pour que cela loop
-        self.set_maya_keys(obj, end_frame, start_tx, start_ty, start_tz, start_rx, start_ry, start_rz, start_sx, start_sy, start_sz)
+        self.set_maya_keys(obj, end_frame, 
+                           start_tx, start_ty, start_tz, 
+                           start_rx, start_ry, start_rz, 
+                           start_sx, start_sy, start_sz)
 
         
         
@@ -115,33 +114,38 @@ class RandomAnimation:
 
 
 
+    def on_click(self, duration, step, 
+                 tx_min, ty_min, tz_min,
+                 tx_max, ty_max, tz_max, 
+                 rx_min, ry_min, rz_min, 
+                 rx_max, ry_max, rz_max, 
+                 sx_min, sy_min, sz_min, 
+                 sx_max, sy_max, sz_max, no_selection
+                 ):
 
 
-
-
-
-    def on_click(self):
-
-
-        selection = self.check_selection()
+        selection = self.check_selection(no_selection)
+        
 
         if selection is None: #si aucun item n'est selectionné, on quitte la fonction
             return
 
-        #la fonction random value va me retourner les value dans cette ordre, on doit donc les mettre dans l'ordre du return:
-        (duration, step, tx_min, ty_min, tz_min, tx_max, ty_max, tz_max, rx_min, ry_min, rz_min, rx_max, ry_max, rz_max, sx_min, sy_min, sz_min, sx_max, sy_max, sz_max) = self.ui.get_value()
-
-
-
-        # la logique est ajouté entre les ligne de cmd maya pour permettre le ctrl+z, en gros tout ce qu'il y a la dedans + une action pour maya
+    
         cmds.undoInfo(openChunk=True)
 
         try:
             for obj in selection: #pour chaque objet selectionné, on va appliquer l'animation aléatoire
-                self.apply_random_animation(obj, duration, step, tx_min, ty_min, tz_min, tx_max, ty_max, tz_max, rx_min, ry_min, rz_min, rx_max, ry_max, rz_max, sx_min, sy_min, sz_min, sx_max, sy_max, sz_max)
+                self.apply_random_animation(obj, duration, step, 
+                                            tx_min, ty_min, tz_min, 
+                                            tx_max, ty_max, tz_max, 
+                                            rx_min, ry_min, rz_min, 
+                                            rx_max, ry_max, rz_max, 
+                                            sx_min, sy_min, sz_min, 
+                                            sx_max, sy_max, sz_max)
 
         except:
             pass
+
 
         finally:
             cmds.undoInfo(closeChunk=True)
